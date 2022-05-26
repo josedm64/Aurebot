@@ -1,0 +1,66 @@
+#define motores 1
+#define MIR PIN_D5
+#define MIF PIN_D4
+#define MDR PIN_D7
+#define MDF PIN_D6
+
+void palante()
+{
+      output_bit(MDF,1);
+      output_bit(MDR,0);
+      output_bit(MIF,1);
+      output_bit(MIR,0);
+
+}
+
+void patras()
+{
+      output_bit(MDF,0);
+      output_bit(MDR,1);
+      output_bit(MIF,0);
+      output_bit(MIR,1);
+}
+
+void paderecha()
+{
+      output_bit(MDF,1);
+      output_bit(MDR,0);
+      output_bit(MIF,0);
+      output_bit(MIR,1);
+}
+
+void paizda()
+{
+      output_bit(MDF,0);
+      output_bit(MDR,1);
+      output_bit(MIF,1);
+      output_bit(MIR,0);
+}
+
+void parar()
+{
+      output_bit(MDF,0);
+      output_bit(MDR,0);
+      output_bit(MIF,0);
+      output_bit(MIR,0);
+}
+
+
+
+void motores_comprobar()
+{
+   printf (usb_cdc_putc, "Comprobando motores...\r\n");
+   printf (usb_cdc_putc, "\tAdelante\r\n");
+   adelante();
+   delay_ms(2000);
+   printf (usb_cdc_putc, "\tAtras\r\n");
+   atras();
+   delay_ms(2000);
+   printf (usb_cdc_putc, "\tDerecha\r\n");
+   derecha();
+   delay_ms(2000);
+   printf (usb_cdc_putc, "\tIzquierda\r\n");
+   izquierda();
+   delay_ms(2000);
+   printf (usb_cdc_putc, "Motores comprobados\r\n\r\n");
+}

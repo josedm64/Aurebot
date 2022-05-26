@@ -1,0 +1,27 @@
+
+void display(byte d, byte num)
+{
+      //d=d-'0';
+      //numero=numero-'0';
+      i2c_start();      //condicion de inicio
+      i2c_write(0xb0);  //direccion del esclavo con el que haremos la comunicacion
+      i2c_write(d);  //enviamos display
+      i2c_stop();    //finalizacion de la comunicacion
+
+
+      i2c_start();      //condicion de inicio
+      i2c_write(0xb0);  //direccion del esclavo con el que haremos la comunicacion
+      //if (num<0 || num>9) num=0;
+      i2c_write(num+'0');  //enviamos display
+      i2c_stop();    //finalizacion de la comunicacion
+
+}
+
+void enviar_comando(byte d)
+{
+      i2c_start();      //condicion de inicio
+      i2c_write(0xb0);  //direccion del esclavo con el que haremos la comunicacion
+      i2c_write(d);  //enviamos display
+      i2c_stop();    //finalizacion de la comunicacion
+}
+

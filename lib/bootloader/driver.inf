@@ -1,0 +1,48 @@
+[Version] 
+Signature="$Windows NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%PRVDR%
+LayoutFile=layout.inf
+DriverVer=01/01/2010,6.0.2600.1
+
+[Manufacturer] 
+%MFGNAME%=VirComDevice,NT,NTamd64
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[VirComDevice.NT]
+;%DESCRIPTION%=DriverInstall,USB\VID_0461&PID_0001
+%DESCRIPTION%=DriverInstall,USB\VID_04D8&PID_0001
+
+[VirComDevice.NTamd64]
+;%DESCRIPTION%=DriverInstall,USB\VID_0461&PID_0001 
+%DESCRIPTION%=DriverInstall,USB\VID_04D8&PID_0001
+
+[DriverInstall.NT]
+Include=mdmcpq.inf
+CopyFiles=FakeModemCopyFileSection
+AddReg=DriverInstall.NT.AddReg
+
+[DriverInstall.NT.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,usbser.sys
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[DriverInstall.NT.Services]
+AddService=usbser, 0x00000002, DriverServiceInst
+
+[DriverServiceInst]
+DisplayName=%SERVICE%
+ServiceType = 1 ; SERVICE_KERNEL_DRIVER
+StartType = 3 ; SERVICE_DEMAND_START
+ErrorControl = 1 ; SERVICE_ERROR_NORMAL
+ServiceBinary= %12%\usbser.sys
+LoadOrderGroup = Base
+
+[Strings] 
+PRVDR       = "Asociación Universitaria de Electrónica y Robótica"
+MFGNAME     = "A.U.R.E."
+DESCRIPTION = "AureBoard a RS232"
+SERVICE     = "AureBoard Driver"

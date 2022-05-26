@@ -1,0 +1,116 @@
+// lib-i2c.h   i2c library routines
+
+// routines for:
+//   dallas ds1624 eeprom+thermometer
+//   philips pcf8574 (and pcf8574a) 8port i/o expander
+//   generic 24cXX eeproms with 16bit address support
+//
+
+// (C) copyright 2003 j.d.sandoz / jds-pic !at! losdos.dyndns.org 
+
+// released under the GNU GENERAL PUBLIC LICENSE (GPL)
+// refer to http://www.gnu.org/licenses/gpl.txt
+
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+// note: CCS's C compiler doesn't accept compile-time directives
+//       to change the i2c pin definitions.  thus, if you have
+//       multiple i2c buses in your application, every function
+//       needs to be replicated for each of the i2c bus definitions,
+//       with an appropriate use_i2c() directive preceeding it.
+
+#use I2C(master, sda=PIN_B0, scl=PIN_B1, slow)
+#define I2CWRITE     0b00000000
+#define I2CREAD      0b00000001
+
+// this is a handy function for taking the i2c physical address
+// and shifting the bits left so that the address can simply be
+// OR'd with an i2c write command...
+
+int i2c_addr_mask(int device_addr) {
+   /* xxxxxIJK --> 00000IJK, then 00000IJK --> 0000IJK0 */
+   return((device_addr & 0x07)<<1);
+}
+
+
+
+// note: due to a production screw-up, some PCB assy's were delivered with
+//       the "A" version of the pcf8574 device; while the responsible parties
+//       were in fact tortured by being forced to consume large quantites
+//       of a popular laxative, it was nevertheless necessary to implement
+//       a scheme by which the FW could detect which flavor pcf8574 was on
+//       the board.  hence the following function... call it using either
+//       PCF8574_ID or PCF8574A_ID and test the return value.  this function
+//       is actually not pcf8574-specific; you can use it to test for the
+//       presence of any type of i2c device at any i2c physical address.
+
+short int i2c_device_exists(int device_type, int device_addr) {
+   short int result=FALSE;
+   int addr_mask;
+   int testbyte;
+   addr_mask=i2c_addr_mask(device_addr);
+   testbyte=(device_type | addr_mask | I2CWRITE); // mode is write
+   i2c_start();
+   if (i2c_write(testbyte))  // if the ACK error bit is set, target is absent
+        result=FALSE;
+     else
+        result=TRUE;
+   i2c_stop();
+   return(result);
+}
+
+BYTE bin2bcd(BYTE binary_value)
+{
+  BYTE temp;
+  BYTE retval;
+
+  temp = binary_value;
+  retval = 0;
+
+  while(1)
+  {
+    // Get the tens digit by doing multiple subtraction
+    // of 10 from the binary value.
+    if(temp >= 10)
+    {
+      temp -= 10;
+      retval += 0x10;
+    }
+    else // Get the ones digit by adding the remainder.
+    {
+      retval += temp;
+      break;
+    }
+  }
+
+  return(retval);
+}
+
+
+// Input range - 00 to 99.
+BYTE bcd2bin(BYTE bcd_value)
+{
+  BYTE temp;
+
+  temp = bcd_value;
+  // Shifting upper digit right by 1 is same as multiplying by 8.
+  temp >>= 1;
+  // Isolate the bits for the upper digit.
+  temp &= 0x78;
+
+  // Now return: (Tens * 8) + (Tens * 2) + Ones
+
+  return(temp + (temp >> 2) + (bcd_value & 0x0f));
+}
