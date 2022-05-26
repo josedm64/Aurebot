@@ -108,6 +108,36 @@ void main()
    aure_configurar_usb_sinespera();
    
   
+   usb_cdc_init();
+   usb_init();;
+   
+   delay_ms(200);
+   lcd_gotoxy(2,1);
+   printf(lcd_putc, LDR_1); //Mensaje de inicialización correcta
+   lcd_gotoxy(2,1);
+   delay_ms(500);
+   printf(lcd_putc," "); //Limpieza del display LCD
+
+while(1)
+{
+// Si usamos el USB
+usb_task();
+
+if(usb_cdc_connected()){}
+else
+{
+delay_ms(500);
+lcd_gotoxy(2,1);
+printf(lcd_putc," ");
+motores_parar();
+while(!input(PULSADOR)){ //Espera mientras no se pulse el pulsador ‘D’
+lcd_gotoxy(2,1);
+printf(lcd_putc,LDR_2); //Mensaje indicando que se pulse ‘D’
+lcd_gotoxy(2,1);
+}
+lcd_gotoxy(2,1); //Limpia el LCD al pulsar ‘D’
+printf(lcd_putc," ");
+delay_ms(1000);
    
    for(i=0; i<50; i++)
    {
@@ -143,40 +173,8 @@ void main()
          motores_parar();
          */
          Output_high(PIN_A0);
-         
          LDR_1 = Input(PIN_A1);
          LDR_2 = Input(PIN_A2);
-         
-         usb_cdc_init();
-   usb_init();;
-   
-   
-   lcd_gotoxy(2,1);
-   printf(lcd_putc, LDR_1); //Mensaje de inicialización correcta
-   lcd_gotoxy(2,1);
-   delay_ms(500);
-   printf(lcd_putc," "); //Limpieza del display LCD
-
-while(1)
-{
-// Si usamos el USB
-usb_task();
-
-if(usb_cdc_connected()){}
-else
-{
-delay_ms(500);
-lcd_gotoxy(2,1);
-printf(lcd_putc," ");
-motores_parar();
-while(!input(PULSADOR)){ //Espera mientras no se pulse el pulsador mando
-lcd_gotoxy(2,1);
-printf(lcd_putc,LDR_2); //Mensaje indicando que se pulse mando
-lcd_gotoxy(2,1);
-}
-lcd_gotoxy(2,1); //Limpia el LCD al pulsar ‘D’
-printf(lcd_putc," ");
-delay_ms(1000);
    }
    
    while(1) {usb_task();}}
