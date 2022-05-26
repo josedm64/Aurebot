@@ -1,49 +1,49 @@
 
-ROM used: 6812 (21%)
-          6816 (21%) including unused fragments
+ROM used: 6612 (20%)
+          6616 (20%) including unused fragments
 
           1 Average locations per line
-          7 Average locations per statement
+          6 Average locations per statement
 
-RAM used: 488 (24%) at main() level
-          521 (25%) worst case
+RAM used: 490 (24%) at main() level
+          523 (26%) worst case
 
 Stack used: 15 worst case (out of 31 total available)
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  218    89   9  main.c
+  232    82   8  main.c
   203    62   6  ..\lib\aurebot.h
-  430     0   0  ..\lib\18F4550.h
+  430     0   0  ..\lib\..\lib\18F4550.h
    75     0   0  ..\lib\bootloader\usb_bootloader.h
   526   114  11  ..\lib\bootloader\usb_cdc.h
-  222     0   0  ..\..\..\..\..\..\Archivos de programa\PICC\drivers\pic18_usb.h
-  328     0   0  ..\..\..\..\..\..\Archivos de programa\PICC\drivers\usb_hw_layer.h
+  222     0   0  ..\..\..\..\..\Program Files (x86)\PICC\drivers\pic18_usb.h
+  328     0   0  ..\..\..\..\..\Program Files (x86)\PICC\drivers\usb_hw_layer.h
   245     0   0  ..\lib\bootloader\usb_desc_cdc.h
- 1046     0   0  ..\..\..\..\..\..\Archivos de programa\PICC\drivers\usb.h
-  796   235  23  ..\..\..\..\..\..\Archivos de programa\PICC\drivers\usb.c
- 1242   316  31  ..\..\..\..\..\..\Archivos de programa\PICC\drivers\pic18_usb.c
-   28    85   8  ..\..\..\..\..\..\Archivos de programa\PICC\drivers\ctype.h
-   67    34   3  ..\lib\motores.h
-  255    47   5  ..\lib\flex_lcd.c
-   40    21   2  ..\lib\ldr.h
-   17     4   0  ..\lib\cny70.h
-   22    12   1  ..\lib\bumper.h
+ 1063     0   0  ..\..\..\..\..\Program Files (x86)\PICC\drivers\usb.h
+  808   237  23  ..\..\..\..\..\Program Files (x86)\PICC\drivers\usb.c
+ 1281   320  31  ..\..\..\..\..\Program Files (x86)\PICC\drivers\pic18_usb.c
+   28    85   8  ..\..\..\..\..\Program Files (x86)\PICC\drivers\ctype.h
+   67    34   3  ..\lib\..\lib\motores.h
+  255    47   5  ..\lib\..\lib\flex_lcd.c
+   40    21   2  ..\lib\..\lib\ldr.h
+   17     4   0  ..\lib\..\lib\cny70.h
+   22    12   1  ..\lib\..\lib\bumper.h
 ----- -----
- 5760  1019 Total
+ 5842  1018 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
 0     40   0   1             @delay_ms1
-0     32   0   0             @const169
-0     32   0   0             @const171
-0     48   0   0             @const173
-0     48   0   0             @const175
-0     84   1   0             @const177
-0     18   0   0             @const179
-0     32   0   0             @const181
-0     34   0   0             @const185
-0     70   1   0             @const188
+0     32   0   0             @const180
+0     32   0   0             @const182
+0     48   0   0             @const184
+0     48   0   0             @const186
+0     84   1   0             @const188
+0     18   0   0             @const190
+0     32   0   0             @const192
+0     34   0   0             @const196
+0     70   1   0             @const199
 0     30   0   5             @MUL1616
 0     78   1   3   133  4.3  usb_tbe
 0     36   0   1   134  2.5  usb_detach
@@ -53,101 +53,128 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     14   0   0    61  2.5  usb_init
 0    266   2   7  1083  5.4  usb_flush_in
 0    158   1  10   320  5.5  usb_put_packet
-0    238   2   7   899  4.9  usb_flush_out
+0    222   2   7   899  4.9  usb_flush_out
 0     60   0   3    61  2.6  usb_rx_packet_size
 0     90   1   4   251  4.6  usb_stall_ep
 0     88   1   4   258  4.6  usb_unstall_ep
 0    106   1   5   360  5.8  usb_endpoint_stalled
 0     22   0   1    88  2.7  usb_set_address
-0    480   4  10  1722  9.8  usb_set_configured
-0     86   1   3   158  2.7  usb_disable_endpoint
+0    418   3  10  1722  9.8  usb_set_configured
+0     96   1   3   192  3.2  usb_disable_endpoint
 0     22   0   1    93  2.9  usb_disable_endpoints
-0     10   0   0    38  1.4  usb_clear_trn
-0    118   1   2   561  6.6  usb_isr
-0      6   0   0    25  1.2  usb_isr_sof
+0      4   0   0    39  2.0  usb_clear_trn
+0    126   1   2   638  6.6  usb_isr
+0      6   0   0    43  2.0  usb_isr_sof
 0     42   0   0   357  4.2  usb_isr_rst
 0     32   0   0   508  4.0  usb_init_ep0_setup
-0      8   0   0    52  1.6  usb_isr_uerr
-0     10   0   0    59  1.6  usb_isr_uidle
-0     16   0   0    74  2.0  usb_isr_activity
-0     14   0   0   127  3.0  usb_isr_stall
+0      8   0   0    74  2.8  usb_isr_uerr
+0     10   0   0    82  2.8  usb_isr_uidle
+0     16   0   0   102  3.3  usb_isr_activity
+0     14   0   0   151  3.9  usb_isr_stall
 0      6   0   1    30  1.7  usb_request_send_response
 0      6   0   0    22  1.2  usb_request_get_data
 0      6   0   0    22  1.2  usb_request_stall
-0    408   3   5  1989  7.9  usb_isr_tok_dne
+0    396   3   5  2031  7.9  usb_isr_tok_dne
 0     40   0   3   248  4.0  usb_token_reset
-0     82   1   3   213  5.4  usb_endpoint_is_valid
+0     68   1   3   267  5.9  usb_endpoint_is_valid
 0     34   0   1   204  3.1  usb_isr_tok_in_dne
 0     18   0   1   108  2.5  usb_isr_tok_out_dne
-0     50   0   0   336  5.5  usb_isr_tok_setup_dne
-0    164   1   0  1454  8.3  usb_isr_tkn_setup_StandardDevice
-0    152   1   3   930  7.7  usb_isr_tkn_setup_StandardInterface
+0     52   0   0   336  5.5  usb_isr_tok_setup_dne
+0    166   1   0  1454  8.3  usb_isr_tkn_setup_StandardDevice
+0    142   1   3   930  7.7  usb_isr_tkn_setup_StandardInterface
 0     96   1   0   753  5.8  usb_isr_tkn_setup_StandardEndpoint
-0    184   1   1  1088  8.7  usb_Get_Descriptor
+0    154   1   0  1088  8.7  usb_Get_Descriptor
 0     14   0   0    76  1.8  usb_finish_set_address
-0    136   1   4   591  8.6  usb_copy_desc_seg_to_ep
+0    102   1   4   591  8.6  usb_copy_desc_seg_to_ep
 0     96   1   0   420  6.1  usb_isr_tok_out_cdc_control_dne
-0    162   1   0  1121  8.3  usb_isr_tkn_cdc
+0    164   1   0  1121  8.3  usb_isr_tkn_cdc
 0     18   0   0   112  2.2  usb_isr_tok_out_cdc_data_dne
 0     14   0   0    59  2.1  usb_isr_tok_in_cdc_data_dne
 0     34   0   0   106  2.5  usb_cdc_flush_out_buffer
 0     36   0   0   280  2.3  usb_cdc_init
-0      8   0   0             @PUTCHARI_BIU_1
 0     10   0   0    21  1.0  aure_configurar_usb_sinespera
-0    220   2   2   474  3.3  aure_configurar
-0     64   0   0             @const424
-0     44   0   0             @const425
-0     34   0   0             @const426
-0     40   0   0             @const427
-0     38   0   0             @const428
-0     44   0   0             @const429
-0     48   0   0             @const430
-0     54   0   0             @const431
-0     38   0   0             @const432
+0     24   0   0             @const431
+0    148   1   2   474  3.3  aure_configurar
+0     38   0   0             @const435
+0     34   0   2             @PSTRINGC_9600_31766_31767
+0     18   0   0             @const437
+0      8   0   0             @const438
+0     14   0   0             @const439
+0     12   0   0             @const440
+0     18   0   0             @const441
+0     22   0   0             @const442
+0     28   0   0             @const443
+0     12   0   0             @const444
 0     40   0   1   167  3.5  aure_serie_int
-0     56   0   2             @ITOF
-0    120   1  10             @FLT
-0     40   0   3             @DIV88
+0     12   0   0             @const463
  Inline        1    67  1.3  leeradc
-0     18   0   0   108  1.7  motores_patras
+0     20   0   0   108  1.7  motores_patras
 0     20   0   0   108  1.7  motores_palante
-0     18   0   0   108  1.7  motores_paderecha
-0     18   0   0   108  1.7  motores_paizda
-0     18   0   0   108  1.7  motores_parar
-0     30   0   0             @const474
+0     20   0   0   108  1.7  motores_paderecha
+0     20   0   0   108  1.7  motores_paizda
+0     26   0   0             @const483
+0     12   0   0             @const484
+0     10   0   0             @const485
+0     12   0   0             @const486
+0     14   0   0             @const487
+0     24   0   0             @const488
+0     20   0   0             @const489
 0     78   1   1   326  2.8  lcd_send_nibble
 0     60   0   3   235  3.8  lcd_send_byte
-0     90   1   2   380  4.7  lcd_init
-0     36   0   4   186  5.5  lcd_gotoxy
-0     68   0   1   272  4.1  lcd_putc
+0     80   1   2   380  4.7  lcd_init
+0     34   0   4   186  5.5  lcd_gotoxy
+0     70   1   1   272  4.1  lcd_putc
 0     20   0   3    82  2.7  lcd_setcursor_vb
 0     12   0   0    41  0.9  lcd_configurar
-0    654   5   7  1882  7.2  MAIN
-0     40   0   0             @const523
-0     44   0   0             @const525
-0     52   0   0             @const526
-0     40   0   0             @const527
-0    102   1   2             @PRINTF_U_487
-0     30   0   0             @const531
+0      8   0   0             @const509
+0     22   0   0             @const510
+0     30   0   0             @const512
+0     18   0   0             @const513
+0     20   0   0             @const514
+0     22   0   0             @const516
+0      8   0   0             @const519
+0     22   0   0             @const520
+0     26   0   0             @const523
+0     42   0   0             @const525
+0      4   0   0     3  0.0  inicio
+0      4   0   0     3  0.0  sonidoatras
+0     26   0   1   112  3.0  parpadeo
+0     84   1   0    63  1.6  alante
+0     88   1   0    96  1.7  atras
+0     84   1   0    63  1.6  izda
+0     84   1   0    63  1.6  drch
+0     40   0   1    74  1.2  choque_i
+0     40   0   1    74  1.2  choque_d
+0    444   3   5  1582  5.8  MAIN
+0     18   0   0             @const547
+0     32   0   2             @PSTRINGC_502
+0     14   0   0             @const549
+0     34   0   0             @const550
+0     18   0   0             @const551
+0     18   0   0             @const552
+0     12   0   0             @const553
+0     14   0   0             @const554
+0     12   0   0             @const555
+0     12   0   0             @const556
 
 Program metrics:
-    Functions               64
-    Statements              1019
-    Comments                3945
-    Volume (V)              44108
-    Difficilty (D)          243.7
-    Effort to implement (E) 10750508
-    Time to implement (T)   165 hours, 54 minutes
-    Est Delivered Bugs (B)  16
-    Cyclomatic Complexity   132
-    Maintainability (MI)    72
+    Functions               72
+    Statements              1018
+    Comments                4025
+    Volume (V)              45922
+    Difficilty (D)          259.7
+    Effort to implement (E) 11924165
+    Time to implement (T)   184 hours, 1 minutes
+    Est Delivered Bugs (B)  17
+    Cyclomatic Complexity   134
+    Maintainability (MI)    52
 
  Segment     Used  Free
 -----------  ----  ----
 00000-017FE     0  6144  
 01800-01806     4  4  
-01808-018A8   162  0  
-018AA-07FFE  6646  19808  
+01808-018B8   178  0  
+018BA-07FFE  6430  20008  
 
 
 

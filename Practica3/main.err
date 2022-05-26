@@ -1,13 +1,14 @@
->>> Warning 203 "C:\Archivos de programa\PICC\drivers\pic18_usb.c" Line 514(1,1): Condition always TRUE
->>> Warning 203 "C:\Documents and Settings\DEF\Escritorio\Practica3\Practica 3\lib\bumper.h" Line 10(1,1): Condition always TRUE
->>> Warning 225 "main.c" Line 50(14,21): Duplicate #define
->>> Warning 225 "main.c" Line 51(14,21): Duplicate #define
->>> Warning 225 "main.c" Line 53(17,24): Duplicate #define
->>> Warning 225 "main.c" Line 54(17,24): Duplicate #define
->>> Warning 203 "main.c" Line 152(1,1): Condition always TRUE
->>> Warning 216 "main.c" Line 219(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_token_reset)
->>> Warning 202 "main.c" Line 115(12,13): Variable never used:   d
->>> Warning 202 "main.c" Line 115(15,16): Variable never used:   j
->>> Warning 202 "main.c" Line 115(18,19): Variable never used:   k
-      Memory usage:   ROM=21%      RAM=24% - 25%
-      0 Errors,  11 Warnings.
+>>> Warning 203 "C:\Program Files (x86)\PICC\drivers\pic18_usb.c" Line 531(1,1): Condition always TRUE
+>>> Warning 203 "C:\Users\jose_\Desktop\NUEVO\lib\..\lib\bumper.h" Line 10(1,1): Condition always TRUE
+>>> Warning 225 "main.c" Line 52(14,21): Duplicate #define
+>>> Warning 225 "main.c" Line 53(14,21): Duplicate #define
+>>> Warning 225 "main.c" Line 55(17,24): Duplicate #define
+>>> Warning 225 "main.c" Line 56(17,24): Duplicate #define
+>>> Warning 203 "main.c" Line 184(1,1): Condition always TRUE
+>>> Warning 216 "main.c" Line 233(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_token_reset)
+>>> Warning 202 "main.c" Line 139(9,10): Variable never used:   i
+>>> Warning 202 "main.c" Line 139(12,13): Variable never used:   d
+>>> Warning 202 "main.c" Line 139(15,16): Variable never used:   j
+>>> Warning 202 "main.c" Line 139(18,19): Variable never used:   k
+      Memory usage:   ROM=20%      RAM=24% - 26%
+      0 Errors,  12 Warnings.

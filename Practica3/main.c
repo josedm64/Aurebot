@@ -22,22 +22,23 @@
          \/____/                  ~~                       \|___|                   \/____/
 
    Programa de ejemplo para la AureBoard
-   Requerido: Aureboard Versi�n>2.0
+   Requerido: Aureboard Version>2.0
 
    - El programa configura el puerto Serie por USB.
-   - Cada programa deber� ir en su carpeta al mismo nivel de la carpeta lib
+   - Cada programa debera ir en su carpeta al mismo nivel de la carpeta lib
 
     A.U.R.E. 2010
 */
 
 
 /*
-//NO ENCUENTRA LAS LIBRERIAS
+//Librerias no encontradas
 #include <../lib/sonido.h>
 #include <../lib/2leds.h>
 #include <../lib/18F4550.h>
 */
 
+//Declaracion de includes
 #include <../lib/aurebot.h>
 #include <../lib/motores.h>
 #include <../lib/flex_lcd.c>
@@ -45,170 +46,273 @@
 #include <../lib/cny70.h>
 #include <../lib/bumper.h>
 
-
-#define FAROS PIN_A3
+//Declaracion de defines
+#define FAROS PIN_A5
+#define TRASERAS PIN_A3
 #define LDR_I PIN_A0
 #define LDR_D PIN_A1
 #define MANDO PIN_A2
 #define BUMPER_I PIN_E1
 #define BUMPER_D PIN_E0
-#define TRASERAS PIN_A5
+#define BUZZER PIN_E2
 
+//Declaracion de variables globales
+int a, b;
 
-// Rutina de gestion de pulsaciones serie
-void aure_serie(){
-    output_toggle(LED);
-
-    switch(keypress){    //Control de movimiento
-        case 'w':
-            motores_palante();
-            break;
-        
-        case 'W':
-            motores_palante();
-            break;
-      
-        case 's':
-            motores_patras();
-            break;
-      
-        case 'S':
-            motores_patras();
-            break;
-            
-        case 'd':
-            motores_paderecha();
-            break;
-            
-        case 'D':
-            motores_paderecha();
-            break;
-      
-        case 'a':
-            motores_paizda();
-            break;
-      
-        case 'A':
-            motores_paizda();
-            break;
-      
-        case 'q':
-            motores_parar();
-            break;
-      
-        case 'Q':
-            motores_parar();
-            break;
-            
-        default:
-            printf (usb_cdc_putc, "NR:%c\r\n", keypress);
-            break;
-    }
-   
-    //Vaciamos el buffer
-    keypress=0;
+//Notas principales
+void D0(){
+    output_high(BUZZER);
+    delay_ms(3.8);
+    output_low(BUZZER);
+    delay_ms(3.8);
 }
 
-//Rutina principal
-void main(){
-    //Declaración de variables
-    int i, d, j, k, a, b;
+void DO_S(){
+    output_high(BUZZER);
+    delay_ms(3.6);
+    output_low(BUZZER);
+    delay_ms(3.6);
+}
+
+void RE(){
+    output_high(BUZZER);
+    delay_ms(3.4);
+    output_low(BUZZER);
+    delay_ms(3.4);
+}
+
+void RE_S(){
+    output_high(BUZZER);
+    delay_ms(3.2);
+    output_low(BUZZER);
+    delay_ms(3.2);
+}
+
+void MI(){
+    output_high(BUZZER);
+    delay_ms(3);
+    output_low(BUZZER);
+    delay_ms(3);
+}
+
+void FA(){
+    output_high(BUZZER);
+    delay_ms(2.9);
+    output_low(BUZZER);
+    delay_ms(2.9);
+}
+
+void FA_S(){
+    output_high(BUZZER);
+    delay_ms(2.7);
+    output_low(BUZZER);
+    delay_ms(2.7);
+}
+
+void SOL(){
+    output_high(BUZZER);
+    delay_ms(2.6);
+    output_low(BUZZER);
+    delay_ms(2.6);
+}
+
+void SOL_S(){
+    output_high(BUZZER);
+    delay_ms(2.4);
+    output_low(BUZZER);
+    delay_ms(2.4);
+}
+
+void LA(){
+    output_high(BUZZER);
+    delay_ms(2.3);
+    output_low(BUZZER);
+    delay_ms(2.3);
+}
+
+void LA_S(){
+    output_high(BUZZER);
+    delay_ms(2.1);
+    output_low(BUZZER);
+    delay_ms(2.1);
+}
+
+void SI(){
+    output_high(BUZZER);
+    delay_ms(2);
+    output_low(BUZZER);
+    delay_ms(2);
+}
+
+
+//Sonidos
+//Inicio
+void inicio(){
+    //BUZZER
+}
+
+void sonidoatras(){
+    //BUZZER
+}
+
+//Movimientos
+//Parpadeo de parachoques
+void parpadeo(){
+    int i;
+    for (i = 0; i < 6; i++) {
+        output_toggle(FAROS);
+        delay_ms(200);
+    }
+}
+
+//Avanzar
+void alante(){
+    motores_palante();
+    a = leeradc(LDR_I);
+    b = leeradc(LDR_D);
+}
+
+//Retroceder
+void atras(){
+    output_high(TRASERAS);
+    sonidoatras();
+    motores_patras();
+    a = leeradc(LDR_I);
+    b = leeradc(LDR_D);
+    D0();
+}
+
+//Giro izquierda
+void izda(){
+    motores_paizda();
+    a = leeradc(LDR_I);
+    b = leeradc(LDR_D);
+}
+
+//Giro derecha
+void drch(){
+    motores_paderecha();
+    a = leeradc(LDR_I);
+    b = leeradc(LDR_D);
+}
+
+//Choque de bumper izquierdo
+void choque_i(){
+    atras();
+    delay_ms(2000);
+    output_low(TRASERAS);
     
+    izda();
+    delay_ms(5400);
+}
+
+//Choque de bumper derecho
+void choque_d(){
+    atras();
+    delay_ms(2000);
+    output_low(TRASERAS);
+    
+    drch();
+    delay_ms(5400);
+}
+
+
+
+//Rutina principal (1)
+void main() {
+
+    //Declaracion de variables
+    int i, d, j, k;
+
+    //Declaración de puertos analogicos
     set_tris_A(0b00000111);
     set_tris_E(0b00000011);
     setup_adc_ports(AN0_TO_AN1_ANALOG);
     setup_ADC(ADC_CLOCK_INTERNAL);
-   
 
     //Declaracion de configuraciones
     aure_configurar();
     lcd_configurar();
     aure_configurar_usb_sinespera();
-    
-    //Funcionamiento de la LCD
-        lcd_init();
-        lcd_putc("Esperando...");
-        
-        Output_low(FAROS);
 
-    for(i=0; i<50; i++){
-        delay_ms(100);
+   //Dejamos un tiempo de inicializacion
+    output_low(FAROS); //Apaga los faros
+    output_low(TRASERAS); //Apaga las luces traseras
+    lcd_init();
+    lcd_putc("Inicializando...");
+
+    delay_ms(3000);
+
+    //Una vez inicializado espera al mando
+    lcd_init();
+    lcd_gotoxy(3, 1);
+    lcd_putc("Esperando...");
+    
+    //Espera al mando
+    while (input(MANDO)){
+
     }
 
-        //Si no esta conectado
-        //while(!input(PULSADOR)){
-        while(input(MANDO)){
-            lcd_putc("Esperando...");//Esperamos hasta que se presione el pulsador
-        }
-        
-        
-        lcd_init();
-        lcd_putc("Inicializando...");
-       
-        
-        delay_ms(4000);
-        
-        
-        while(1){
-           lcd_init();
-           lcd_putc("Todo funcionando bien :)");
-           
-           a=leeradc(LDR_I);
-           b=leeradc(LDR_D);
-           
-           lcd_init();
-           printf(lcd_putc,"a=%u    b=%u",a b);
-        
-        
-        //Funcionamiento del LDR 
-        if( (a> 1.0) ||  (b > 1) ){
+    //AQUI DETECTA EL MANDO
+    lcd_init();
+    lcd_putc("Todo funcionando correctamente :)");
+
+    inicio();
+    
+    parpadeo();
+
+    delay_ms(1000);
+
+    lcd_init();
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //Aqui empieza la rutina programable
+    while (1) {
+        //LDRs
+        a = leeradc(LDR_I);
+        b = leeradc(LDR_D);
+
+        /*
+        lcd_gotoxy(1, 2);
+        printf(lcd_putc, "a=%u    b=%u", a, b);
+        */
+
+        if ((a > 80) || (b > 80))
             Output_high(FAROS);
-        }
-        else{
+
+        else
             Output_low(FAROS);
-        }
-        
-        if(input(BUMPER_I) && input(BUMPER_D)){
-            motores_palante();
-            delay_ms(10000);
-            
-            motores_paizda();
-            delay_ms(5000);
-            
-            lcd_init();
-            lcd_putc(":)");
-        }
-        
-        if(!input(BUMPER_I) && !input(BUMPER_D)){
-            motores_parar();
-            delay_ms(1000);
-            
-            motores_patras();
-            delay_ms(10000);
-            
-            motores_paderecha();
-            delay_ms(6000);
-            
+
+
+        //Movimiento
+        lcd_putc("Sigo paseando :)");
+        lcd_gotoxy(1, 2);
+        lcd_putc("                ");
+
+        if (input(BUMPER_I) && input(BUMPER_D)) {
+            alante();
         } else if(!input(BUMPER_I)){
-            motores_parar();
-            delay_ms(1000);
-            
-            motores_patras();
-            delay_ms(5000);
-            
-            motores_paderecha();
-            delay_ms(6000);
-            
-        }else if (!input(BUMPER_D)){
-            motores_parar();
-            delay_ms(1000);
-            
-            motores_patras();
-            delay_ms(5000);
-            
-            motores_paizda();
-            delay_ms(6000);
-         }
+            lcd_init();
+            lcd_gotoxy(3, 1);
+            lcd_putc("Choque a la");
+
+            lcd_gotoxy(3, 2);
+            lcd_putc("izquierda :(");
+
+            choque_d();
+            lcd_init();
+        } else if(!input(BUMPER_D)){
+            lcd_init();
+            lcd_gotoxy(3, 1);
+            lcd_putc("Choque a la");
+
+            lcd_gotoxy(4, 2);
+            lcd_putc("derecha :(");
+
+            choque_i();
+            lcd_init();
         }
+    }
 }
 
