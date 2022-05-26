@@ -1,34 +1,36 @@
 
-ROM used: 6400 (20%)
-          6404 (20%) including unused fragments
+ROM used: 6384 (19%)
+          6388 (19%) including unused fragments
 
           1 Average locations per line
           6 Average locations per statement
 
-RAM used: 494 (24%) at main() level
-          537 (26%) worst case
+RAM used: 486 (24%) at main() level
+          530 (26%) worst case
 
 Stack used: 18 worst case (out of 31 total available)
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  184    77   8  main.c
+  226    86   8  main.c
   203    62   6  ..\lib\aurebot.h
   430     0   0  ..\lib\18F4550.h
    75     0   0  ..\lib\bootloader\usb_bootloader.h
-  526   114  12  ..\lib\bootloader\usb_cdc.h
-  222     0   0  ..\..\..\..\..\..\Archivos de programa\PICC\drivers\pic18_usb.h
-  328     0   0  ..\..\..\..\..\..\Archivos de programa\PICC\drivers\usb_hw_layer.h
+  526   114  11  ..\lib\bootloader\usb_cdc.h
+  222     0   0  ..\..\..\..\..\Archivos de programa\PICC\drivers\pic18_usb.h
+  328     0   0  ..\..\..\..\..\Archivos de programa\PICC\drivers\usb_hw_layer.h
   245     0   0  ..\lib\bootloader\usb_desc_cdc.h
- 1046     0   0  ..\..\..\..\..\..\Archivos de programa\PICC\drivers\usb.h
-  796   235  24  ..\..\..\..\..\..\Archivos de programa\PICC\drivers\usb.c
- 1242   316  32  ..\..\..\..\..\..\Archivos de programa\PICC\drivers\pic18_usb.c
-   28    85   9  ..\..\..\..\..\..\Archivos de programa\PICC\drivers\ctype.h
+ 1046     0   0  ..\..\..\..\..\Archivos de programa\PICC\drivers\usb.h
+  796   235  23  ..\..\..\..\..\Archivos de programa\PICC\drivers\usb.c
+ 1242   316  31  ..\..\..\..\..\Archivos de programa\PICC\drivers\pic18_usb.c
+   28    85   8  ..\..\..\..\..\Archivos de programa\PICC\drivers\ctype.h
    67    34   3  ..\lib\motores.h
   255    47   5  ..\lib\flex_lcd.c
    40    21   2  ..\lib\ldr.h
+   17     4   0  ..\lib\cny70.h
+   22    12   1  ..\lib\bumper.h
 ----- -----
- 5687   991 Total
+ 5768  1016 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -48,7 +50,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     34   0   0   136  2.2  usb_attach
 0      6   0   0    16  1.0  usb_init_cs
 0     34   0   1   346  4.6  usb_task
-0     12   0   0    61  2.5  usb_init
+0     14   0   0    61  2.5  usb_init
 0    266   2   7  1083  5.4  usb_flush_in
 0    156   1  10   320  5.5  usb_put_packet
 0    238   2   7   899  4.9  usb_flush_out
@@ -57,7 +59,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     88   1   4   258  4.6  usb_unstall_ep
 0    106   1   5   360  5.8  usb_endpoint_stalled
 0     22   0   1    88  2.7  usb_set_address
-0    478   4  10  1722  9.8  usb_set_configured
+0    480   4  10  1722  9.8  usb_set_configured
 0     86   1   3   158  2.7  usb_disable_endpoint
 0     22   0   1    93  2.9  usb_disable_endpoints
 0     10   0   0    38  1.4  usb_clear_trn
@@ -80,7 +82,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     18   0   1   108  2.5  usb_isr_tok_out_dne
 0     50   0   0   336  5.5  usb_isr_tok_setup_dne
 0    164   1   0  1454  8.3  usb_isr_tkn_setup_StandardDevice
-0    150   1   3   930  7.7  usb_isr_tkn_setup_StandardInterface
+0    152   1   3   930  7.7  usb_isr_tkn_setup_StandardInterface
 0     96   1   0   753  5.8  usb_isr_tkn_setup_StandardEndpoint
 0    184   1   1  1088  8.7  usb_Get_Descriptor
 0     14   0   0    76  1.8  usb_finish_set_address
@@ -91,14 +93,14 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     14   0   0    59  2.1  usb_isr_tok_in_cdc_data_dne
 0     32   0   0   106  2.5  usb_cdc_flush_out_buffer
 0     36   0   0   280  2.3  usb_cdc_init
-0     64   0   2   251  5.9  usb_cdc_getc
+0     64   1   2   251  5.9  usb_cdc_getc
 0     66   1   4   223  4.1  usb_cdc_putc_fast
 0     34   0   1   112  1.3  usb_cdc_putc
 0      8   0   0             @PUTCHARI_BIU_1
 0     10   0   0    21  1.0  aure_configurar_usb_sinespera
 0     24   0   0    54  2.0  aure_configurar_usb_comprobar
 0    220   2   2   474  3.3  aure_configurar
-0     64   0   0             @const424
+0     64   1   0             @const424
 0     44   0   0             @const425
 0     34   0   0             @const426
 0     40   0   0             @const427
@@ -118,32 +120,35 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     30   0   0             @const474
 0     78   1   1   326  2.8  lcd_send_nibble
 0     60   0   3   235  3.8  lcd_send_byte
-0     92   1   2   380  4.7  lcd_init
-0     34   0   4   186  5.5  lcd_gotoxy
+0     90   1   2   380  4.7  lcd_init
+0     36   0   4   186  5.5  lcd_gotoxy
 0     68   1   1   272  4.1  lcd_putc
 0     20   0   3    82  2.7  lcd_setcursor_vb
 0     12   0   0    41  0.9  lcd_configurar
 0    132   1   0   572  4.5  aure_serie
-0    382   3  13  1527  6.4  MAIN
+0    224   2   5  1491  7.2  MAIN
+0     40   0   0             @const521
+0     44   0   0             @const522
+0     52   0   0             @const523
 
 Program metrics:
     Functions               71
-    Statements              991
-    Comments                3847
-    Volume (V)              47257
-    Difficilty (D)          269.5
-    Effort to implement (E) 12737641
-    Time to implement (T)   196 hours, 34 minutes
+    Statements              1016
+    Comments                3938
+    Volume (V)              47218
+    Difficilty (D)          269.6
+    Effort to implement (E) 12731734
+    Time to implement (T)   196 hours, 29 minutes
     Est Delivered Bugs (B)  18
-    Cyclomatic Complexity   150
-    Maintainability (MI)    48
+    Cyclomatic Complexity   152
+    Maintainability (MI)    51
 
  Segment     Used  Free
 -----------  ----  ----
 00000-017FE     0  6144  
 01800-01806     4  4  
 01808-018A8   162  0  
-018AA-07FFE  6234  20220  
+018AA-07FFE  6218  20236  
 
 
 

@@ -1,14 +1,8 @@
 >>> Warning 203 "C:\Archivos de programa\PICC\drivers\pic18_usb.c" Line 514(1,1): Condition always TRUE
->>> Warning 203 "main.c" Line 124(1,1): Condition always TRUE
->>> Warning 203 "main.c" Line 161(1,1): Condition always TRUE
->>> Warning 203 "main.c" Line 182(1,1): Condition always TRUE
->>> Warning 216 "main.c" Line 185(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_token_reset)
->>> Warning 216 "main.c" Line 185(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_flush_out)
->>> Warning 216 "main.c" Line 185(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_cdc_flush_out_buffer)
->>> Warning 202 "main.c" Line 100(17,24): Variable never used:   lectura
->>> Warning 202 "main.c" Line 103(11,12): Variable never used:   d
->>> Warning 202 "main.c" Line 103(14,15): Variable never used:   j
->>> Warning 202 "main.c" Line 103(17,18): Variable never used:   k
->>> Warning 202 "main.c" Line 104(10,16): Variable never used:   medida
-      Memory usage:   ROM=20%      RAM=24% - 26%
-      0 Errors,  12 Warnings.
+>>> Warning 203 "C:\Documents and Settings\DEF\Escritorio\Practica 3\lib\bumper.h" Line 10(1,1): Condition always TRUE
+>>> Warning 225 "main.c" Line 51(14,21): Duplicate #define
+>>> Warning 225 "main.c" Line 52(14,21): Duplicate #define
+>>> Warning 225 "main.c" Line 54(17,24): Duplicate #define
+>>> Warning 225 "main.c" Line 55(17,24): Duplicate #define
+*** Error 12 "main.c" Line 116(21,35): Undefined identifier   RA0_RA1_ANALOG
+      1 Errors,  6 Warnings.

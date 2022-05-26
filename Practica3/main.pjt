@@ -30,7 +30,7 @@ BuildTool=C-COMPILER
 OptionString=+FH
 AdditionalOptionString=
 BuildRequired=1
-FileList=C:\Documents and Settings\DEF\Escritorio\ww\Practica 3\Practica3\main.c
+FileList=C:\Documents and Settings\DEF\Escritorio\Practica 3\Practica3\main.c
 [main.c]
 Type=4
 Path=
@@ -44,9 +44,9 @@ AdditionalOptionString=
 0=0000 %S 0 0 796 451 3 0
 [Opened Files]
 1=main.c
-2=..\lib\ldr.h
-3=..\lib\flex_lcd.c
-4=
+2=..\lib\flex_lcd.c
+3=..\lib\aurebot.h
+4=..\lib\motores.h
 5=
 6=
 7=..\lib\ldr.h
