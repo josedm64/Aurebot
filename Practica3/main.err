@@ -1,0 +1,15 @@
+>>> Warning 203 "C:\Program Files (x86)\PICC\drivers\pic18_usb.c" Line 531(1,1): Condition always TRUE
+>>> Warning 203 "C:\Users\jose_\Desktop\Final\lib\..\lib\bumper.h" Line 10(1,1): Condition always TRUE
+>>> Warning 225 "main.c" Line 52(14,21): Duplicate #define
+>>> Warning 225 "main.c" Line 53(14,21): Duplicate #define
+>>> Warning 225 "main.c" Line 55(17,24): Duplicate #define
+>>> Warning 225 "main.c" Line 56(17,24): Duplicate #define
+>>> Warning 203 "main.c" Line 265(1,1): Condition always TRUE
+>>> Warning 203 "main.c" Line 321(1,1): Condition always TRUE
+>>> Warning 216 "main.c" Line 328(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_token_reset)
+>>> Warning 202 "main.c" Line 221(9,10): Variable never used:   i
+>>> Warning 202 "main.c" Line 221(12,13): Variable never used:   d
+>>> Warning 202 "main.c" Line 221(15,16): Variable never used:   j
+>>> Warning 202 "main.c" Line 221(18,19): Variable never used:   k
+      Memory usage:   ROM=21%      RAM=24% - 26%
+      0 Errors,  13 Warnings.

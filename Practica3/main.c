@@ -22,117 +22,305 @@
          \/____/                  ~~                       \|___|                   \/____/
 
    Programa de ejemplo para la AureBoard
-   Requerido: Aureboard Versión>2.0
+   Requerido: Aureboard Version>2.0
 
    - El programa configura el puerto Serie por USB.
-   - Cada programa deberá ir en su carpeta al mismo nivel de la carpeta lib
+   - Cada programa debera ir en su carpeta al mismo nivel de la carpeta lib
 
-
-
-
-   A.U.R.E. 2010
+    A.U.R.E. 2010
 */
 
+
+/*
+//Librerias no encontradas
+#include <../lib/sonido.h>
+#include <../lib/2leds.h>
+#include <../lib/18F4550.h>
+*/
+
+//Declaracion de includes
 #include <../lib/aurebot.h>
 #include <../lib/motores.h>
 #include <../lib/flex_lcd.c>
-/*#include <../lib/ldr.h>
+#include <../lib/ldr.h>
 #include <../lib/cny70.h>
 #include <../lib/bumper.h>
-#include <../lib/sonido.h>
-#include <../lib/2leds.h>*/
 
+//Declaracion de defines
+#define FAROS PIN_A3
+#define TRASERAS PIN_A5
+#define LDR_I PIN_A0
+#define LDR_D PIN_A1
+#define MANDO PIN_A2
+#define BUMPER_I PIN_E1
+#define BUMPER_D PIN_E0
+#define BUZZER PIN_E2
 
+//Declaracion de variables globales
+int a, b;
 
+//Notas principales
+void D0(){
+    output_high(BUZZER);
+    delay_us(3800);
+    output_low(BUZZER);
+    delay_us(3800);
+}
 
+void DO_S(){
+    output_high(BUZZER);
+    delay_us(3600);
+    output_low(BUZZER);
+    delay_us(3600);
+}
 
-// Rutina de gestión de pulsaciones serie
-void aure_serie()
-{
-   output_toggle(LED);
-   switch(keypress)
-   {
-//Control de movimiento
-            case 'w':
-               motores_palante();
-               break;
-            case 'W':
-               motores_palante();
-               break;
-            case 's':
-               motores_patras();
-               break;
-            case 'S':
-               motores_patras();
-               break;
-            case 'd':
-               motores_paderecha();
-               break;
-            case 'D':
-               motores_paderecha();
-               break;
-            case 'a':
-               motores_paizda();
-               break;
-            case 'A':
-               motores_paizda();
-               break;
-            case 'q':
-               motores_parar();
-               break;
-            case 'Q':
-               motores_parar();
-               break;               
-            default:
-               printf (usb_cdc_putc, "NR:%c\r\n", keypress);
-               break;
-   }
-   //Vaciamos el buffer
-   keypress=0;
+void RE(){
+    output_high(BUZZER);
+    delay_us(3400);
+    output_low(BUZZER);
+    delay_us(3400);
+}
+
+void RE_S(){
+    output_high(BUZZER);
+    delay_us(3200);
+    output_low(BUZZER);
+    delay_us(3200);
+}
+
+void MI(){
+    output_high(BUZZER);
+    delay_us(3000);
+    output_low(BUZZER);
+    delay_us(3000);
+}
+
+void FA(){
+    output_high(BUZZER);
+    delay_us(2900);
+    output_low(BUZZER);
+    delay_us(2900);
+}
+
+void FA_S(){
+    output_high(BUZZER);
+    delay_us(2700);
+    output_low(BUZZER);
+    delay_us(2700);
+}
+
+void SOL(){
+    output_high(BUZZER);
+    delay_us(2600);
+    output_low(BUZZER);
+    delay_us(2600);
+}
+
+void SOL_S(){
+    output_high(BUZZER);
+    delay_us(2400);
+    output_low(BUZZER);
+    delay_us(2400);
+}
+
+void LA(){
+    output_high(BUZZER);
+    delay_us(2300);
+    output_low(BUZZER);
+    delay_us(2300);
+}
+
+void LA_S(){
+    output_high(BUZZER);
+    delay_us(2100);
+    output_low(BUZZER);
+    delay_us(2100);
+}
+
+void SI(){
+    output_high(BUZZER);
+    delay_us(2000);
+    output_low(BUZZER);
+    delay_us(2000);
 }
 
 
 
-//Rutina principal
-void main()
-{
-   int i, d, j, k;
-   aure_configurar();
-   lcd_configurar();
-   aure_configurar_usb_sinespera();
-   
-   for(i=0; i<50; i++)
-   {
-     delay_ms(100);
-     if(input(PULSADOR))i=100;
-   }
-   
-   if (aure_configurar_usb_comprobar()==1) 
-   {
-   
-      // Si está conectado
-         while (!input(PULSADOR)) {aure_usb();} //Esperamos hasta que se pulse el pulsador 
-         aure_usb();
-         while (1) {aure_usb();}
-   } else {
-      // Si no está conectado   
-         while (!input(PULSADOR)) {} //Esperamos hasta que se pulse el pulsador 
-         motores_palante();
-         delay_ms(10000);
-         motores_parar();
-         motores_paderecha();
-         delay_ms(1000);
-         motores_parar();
-         motores_palante();
-         delay_ms(2000);
-         motores_parar();
-         motores_paizda();
-         delay_ms(1000);
-         motores_parar();
-         motores_palante();
-         delay_ms(8000);
-         motores_parar();
-   }
-   
-   while(1) {usb_task();}
+//Movimientos
+//Parpadeo de parachoques
+void parpadeo(){
+    int i;
+    for (i = 0; i < 6; i++) {
+        output_toggle(FAROS);
+        delay_ms(200);
+    }
+}
+
+//Avanzar
+void alante(){
+    motores_palante();
+    a = leeradc(LDR_I);
+    b = leeradc(LDR_D);
+}
+
+//Retroceder
+void atras(){
+    long i;
+
+    output_high(TRASERAS);
+    motores_patras();
+
+    for(i = 0; i < 722; i++){
+        D0();
+    }
+    
+    a = leeradc(LDR_I);
+    b = leeradc(LDR_D);
+}
+
+//Giro izquierda
+void izda(){
+    motores_paizda();
+    a = leeradc(LDR_I);
+    b = leeradc(LDR_D);
+}
+
+//Giro derecha
+void drch(){
+    motores_paderecha();
+    a = leeradc(LDR_I);
+    b = leeradc(LDR_D);
+}
+
+//Choque de bumper izquierdo
+void choque_i(){
+    atras();
+    delay_ms(200);
+    output_low(TRASERAS);
+    
+    izda();
+    delay_ms(5400);
+}
+
+//Choque de bumper derecho
+void choque_d(){
+    atras();
+    delay_ms(200);
+    output_low(TRASERAS);
+    
+    drch();
+    delay_ms(5400);
+}
+
+
+
+//Rutina principal (1)
+void main() {
+
+    //Declaracion de variables
+    int i, d, j, k;
+
+    //DeclaraciÃ³n de puertos analogicos
+    set_tris_A(0b00000111);
+    set_tris_E(0b00000011);
+    setup_adc_ports(AN0_TO_AN1_ANALOG);
+    setup_ADC(ADC_CLOCK_INTERNAL);
+
+    //Declaracion de configuraciones
+    aure_configurar();
+    lcd_configurar();
+    aure_configurar_usb_sinespera();
+
+   //Dejamos un tiempo de inicializacion
+    output_low(FAROS); //Apaga los faros
+    output_low(TRASERAS); //Apaga las luces traseras
+    lcd_init();
+    lcd_putc("Inicializando...");
+
+    delay_ms(3000);
+
+    //Una vez inicializado espera al mando
+    lcd_init();
+    lcd_gotoxy(3, 1);
+    lcd_putc("Esperando...");
+    
+    //Espera al mando
+    while (input(MANDO)){
+
+    }
+
+    //AQUI DETECTA EL MANDO
+    lcd_init();
+    lcd_putc("Todo funcionando correctamente :)");
+    
+    //inicio();
+    
+    parpadeo();
+
+    lcd_init();
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //Aqui empieza la rutina programable
+    while (1) {
+        //LDRs
+        a = leeradc(LDR_I);
+        b = leeradc(LDR_D);
+
+        
+        // lcd_gotoxy(1, 2);
+        // printf(lcd_putc, "a=%u    b=%u", a, b);
+
+
+        if ((a > 21) | (b > 21))
+            Output_high(FAROS);
+
+        else
+            Output_low(FAROS);
+
+        //Movimiento
+        lcd_putc("Sigo paseando :)");
+        lcd_gotoxy(1, 2);
+        lcd_putc("                ");
+
+        if (input(BUMPER_I) && input(BUMPER_D)) {
+            alante();
+        } else if(!input(BUMPER_I)){
+            lcd_init();
+            lcd_gotoxy(3, 1);
+            lcd_putc("Choque a la");
+
+            lcd_gotoxy(3, 2);
+            lcd_putc("izquierda :(");
+
+            choque_d();
+            lcd_init();
+            
+        } else if(!input(BUMPER_D)){
+            lcd_init();
+            lcd_gotoxy(3, 1);
+            lcd_putc("Choque a la");
+
+            lcd_gotoxy(4, 2);
+            lcd_putc("derecha :(");
+
+            choque_i();
+            lcd_init();
+        }
+        
+        
+        if(!input(MANDO)){
+           lcd_init();
+           
+           lcd_gotoxy(4, 1);
+           lcd_putc("Eso es todo");
+           
+           lcd_gotoxy(5, 2);
+           lcd_putc("amigos :)");
+           
+           while(1){
+              motores_parar();
+           }
+        }
+    }
 }
