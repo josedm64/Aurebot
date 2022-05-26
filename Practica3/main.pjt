@@ -30,7 +30,7 @@ BuildTool=C-COMPILER
 OptionString=+FH
 AdditionalOptionString=
 BuildRequired=1
-FileList=C:\Documents and Settings\lcef-itt\Escritorio\d5g2\main.c
+FileList=C:\Documents and Settings\DEF\Escritorio\Practica3\Practica 3\Practica3\main.c
 [main.c]
 Type=4
 Path=
@@ -43,10 +43,10 @@ AdditionalOptionString=
 [Windows]
 0=0000 %S 0 0 796 451 3 0
 [Opened Files]
-1=C:\Documents and Settings\lcef-itt\Escritorio\d5g2\main.c
-2=C:\Documents and Settings\lcef-itt\Escritorio\AureBot\lib\aurebot.h
-3=..\lib\aurebot.h
-4=
+1=main.c
+2=
+3=
+4=..\lib\motores.h
 5=
 6=
 7=..\lib\ldr.h

@@ -208,7 +208,10 @@ void main(){
             
             motores_paizda();
             delay_ms(6000);
-         }
+        }
+        
+        
+        
         }
 }
 
